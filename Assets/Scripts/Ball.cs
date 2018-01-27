@@ -59,6 +59,15 @@ public class Ball : MonoBehaviour {
         return false;
     }
 
+    public bool CanJumpDown()
+    {
+        if (otherRoadZone != null)
+        {
+            return otherRoadZone.gameObject.name == "up";
+        }
+        return false;
+    }
+
     public RoadZone GetNextZone()
     {
         return otherRoadZone; //nextZoneGO.GetComponent<RoadZone>();

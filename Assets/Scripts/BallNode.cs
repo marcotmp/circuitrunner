@@ -43,8 +43,19 @@ public class BallNode : MonoBehaviour {
             }
         }
         else if (down)
-            transform.localScale = new Vector3(1, -1, 1);
-	}
+            if (ball.CanJumpDown())
+            {
+                print("jump up");
+                transform.position = new Vector3(transform.position.x, ball.GetNextZone().GetRoadY(), transform.position.z);
+                transform.localScale = new Vector3(1, 1, 1);
+                ball.Swap();
+            }
+            else
+            {
+                print("run upside");
+                transform.localScale = new Vector3(1, -1, 1);
+            }
+    }
 
     public void Hit()
     {
