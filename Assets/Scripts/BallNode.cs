@@ -29,12 +29,12 @@ public class BallNode : MonoBehaviour {
 
         if (up)
         {
-            if (ball.CanJumpUp())
+            if (transform.localScale.y > 0 && ball.CanJump())
             {
                 print("jump up");
                 transform.position = new Vector3(transform.position.x, ball.GetNextZone().GetRoadY(), transform.position.z);
                 transform.localScale = new Vector3(1, -1, 1);
-                ball.Swap();
+                //ball.Swap();
             }
             else
             {
@@ -43,16 +43,16 @@ public class BallNode : MonoBehaviour {
             }
         }
         else if (down)
-            if (ball.CanJumpDown())
+            if (transform.localScale.y < 0 && ball.CanJump())
             {
-                print("jump up");
+                print("jump down");
                 transform.position = new Vector3(transform.position.x, ball.GetNextZone().GetRoadY(), transform.position.z);
                 transform.localScale = new Vector3(1, 1, 1);
                 ball.Swap();
             }
             else
             {
-                print("run upside");
+                print("run downside");
                 transform.localScale = new Vector3(1, -1, 1);
             }
     }
