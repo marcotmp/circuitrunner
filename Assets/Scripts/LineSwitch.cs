@@ -3,23 +3,31 @@ using UnityEngine;
 
 public class LineSwitch : MonoBehaviour {
 
-    public enum LineSwitchAngles { ZERO=0, NINE=90, ONEEIGHT=180, TWOSEVEN=270 };
-    public LineSwitchAngles startingAngle;
+    public enum LineSwitchAngle { ZERO=0, NINE=90, ONEEIGHT=180, TWOSEVEN=270 };
+    public LineSwitchAngle startingAngle;
     
     // key - switch angle
     // value - ball angle
-    Dictionary<float, float> matchingAngles = new Dictionary<float, float>()
+    Dictionary<float, bool> passageRules = new Dictionary<float, bool>()
     {
-        { (float)LineSwitchAngles.ZERO, 0 },
-        { (float)LineSwitchAngles.NINE, 90 },
-        { (float)LineSwitchAngles.ONEEIGHT, 0 },
-        { (float)LineSwitchAngles.TWOSEVEN, 90 }
+        { (float)LineSwitchAngle.ZERO, true },
+        { (float)LineSwitchAngle.NINE, false },
+        { (float)LineSwitchAngle.ONEEIGHT, true },
+        { (float)LineSwitchAngle.TWOSEVEN, false }
     };
 
-    LineSwitchAngles currentAngle;
-    List<LineSwitchAngles> switchOrder = new List<LineSwitchAngles>()
+    Dictionary<float, LineSwitchAngle> entryAngles = new Dictionary<float, LineSwitchAngle>()
     {
-        LineSwitchAngles.ZERO, LineSwitchAngles.NINE, LineSwitchAngles.ONEEIGHT, LineSwitchAngles.TWOSEVEN
+        { 0, LineSwitchAngle.ONEEIGHT },
+        { 180, LineSwitchAngle.ZERO },
+        { 90, LineSwitchAngle.TWOSEVEN },
+        { 270, LineSwitchAngle.NINE }
+    };
+
+    LineSwitchAngle currentAngle;
+    List<LineSwitchAngle> switchOrder = new List<LineSwitchAngle>()
+    {
+        LineSwitchAngle.ZERO, LineSwitchAngle.NINE, LineSwitchAngle.ONEEIGHT, LineSwitchAngle.TWOSEVEN
     };
     int currentAngleIndex = 0;
     bool locked = false;
@@ -30,11 +38,6 @@ public class LineSwitch : MonoBehaviour {
         currentAngleIndex = switchOrder.IndexOf(currentAngle);
         UpdateAngle();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-
-    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -44,7 +47,7 @@ public class LineSwitch : MonoBehaviour {
             if (!locked)
             {
                 // signal projectile to destroy itself
-                projectile.OnHit();
+                projectile.Hit();
 
                 SwitchAngle();
             }
@@ -57,9 +60,12 @@ public class LineSwitch : MonoBehaviour {
         if (ball != null)
         {
             locked = true;
-            float angle = (float)ball.GetDirection();
-            float acceptedAngle = matchingAngles[(float)currentAngle];
-            if (acceptedAngle != angle)
+            float ballAngle = (float)ball.GetDirection();
+            LineSwitchAngle entryAngle = entryAngles[ballAngle];
+            float finalAngle = Mathf.Abs((float)entryAngle - (float)currentAngle);
+
+            // the ball didn't enter from the right direction
+            if (!passageRules[finalAngle])
             {
                 ball.Hit();
             }
