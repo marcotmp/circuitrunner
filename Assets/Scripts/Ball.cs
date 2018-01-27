@@ -42,4 +42,9 @@ public class Ball : MonoBehaviour {
     {
         ballNode.Hit();
     }
+
+    public Direction GetDirection()
+    {
+        return ballNode.GetDirection();
+    }
 }

@@ -39,13 +39,6 @@ public class CameraFollows : MonoBehaviour {
                 break;
         }
 
-        //float velocity = targetable.GetVelocity();
-
-        //float x = Mathf.SmoothDamp(transform.position.x, newPos.x, ref velocity, smoothVelocity);
-        //float y = Mathf.SmoothDamp(transform.position.y, newPos.y, ref velocity, smoothVelocity);
-
-        //transform.position = new Vector3(x, y, z);
-
         transform.position = newPos;
     }
 }

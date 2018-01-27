@@ -9,6 +9,7 @@ public class BallNode : MonoBehaviour, CameraTargetable
     public Direction direction;
     public float movementAngle = 0;
     public Ball ball;
+    public GameObject boltPrefab;
 
     public Action OnDie { get; internal set; }
 
@@ -28,12 +29,14 @@ public class BallNode : MonoBehaviour, CameraTargetable
     {
         transform.position += transform.right * speed * Time.deltaTime;
 
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, (int)direction));
+        //transform.rotation = Quaternion.Euler(new Vector3(0, 0, (int)direction));
 
         var up = Input.GetKeyDown(KeyCode.UpArrow);
         var down = Input.GetKeyDown(KeyCode.DownArrow);
         var left = Input.GetKeyDown(KeyCode.LeftArrow);
         var right = Input.GetKeyDown(KeyCode.RightArrow);
+
+        var mouseLeft = Input.GetMouseButtonDown(0);
 
         // select right key depending on direction
 
@@ -53,6 +56,9 @@ public class BallNode : MonoBehaviour, CameraTargetable
         }
         else if (down)
             transform.localScale = new Vector3(1, -1, 1);
+
+        if (mouseLeft)
+            Fire();
     }
 
     public void ChangeDirection()
@@ -85,5 +91,11 @@ public class BallNode : MonoBehaviour, CameraTargetable
         currentSpeed = 0;
         ball.gameObject.SetActive(false);
         OnDie();
+    }
+
+    public void Fire()
+    {
+        Bolt bolt = Instantiate(boltPrefab, transform.parent, true).GetComponent<Bolt>();
+        bolt.transform.position = transform.position;
     }
 }
