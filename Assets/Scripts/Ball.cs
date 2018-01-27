@@ -10,21 +10,23 @@ public class Ball : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
         otherRoadZone = collision.gameObject.GetComponent<RoadZone>();
-        otherRoad = otherRoadZone.road;
-
-        // set object to current road if no road is set
-        if (currentRoadZone == null)
+        if (otherRoadZone != null)
         {
-            currentRoadZone = otherRoadZone;
-            currentRoad = otherRoad;
-        }
+            otherRoad = otherRoadZone.road;
 
-        if (otherRoad.GetInstanceID() == currentRoad.GetInstanceID())
-        {
-            otherRoad = null;
-            otherRoadZone = null;
+            // set object to current road if no road is set
+            if (currentRoadZone == null)
+            {
+                currentRoadZone = otherRoadZone;
+                currentRoad = otherRoad;
+            }
+
+            if (otherRoad.GetInstanceID() == currentRoad.GetInstanceID())
+            {
+                otherRoad = null;
+                otherRoadZone = null;
+            }
         }
     }
 
