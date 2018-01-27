@@ -17,7 +17,12 @@ public class Bolt : MonoBehaviour {
 
     public void Hit()
     {
-        Disappear();
+        // stop
+        speed = 0;
+        // play collision animation
+        gameObject.GetComponent<Animator>().Play("Bullet-Collision");
+
+        Invoke("Disappear", .3f);
     }
 
     void Disappear()
