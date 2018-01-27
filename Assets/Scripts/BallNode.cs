@@ -42,12 +42,12 @@ public class BallNode : MonoBehaviour, CameraTargetable
 
         if (up)
         {
-            if (transform.localScale.y > 0 && ball.CanJump())
+            if (IsUp() && ball.CanJump())
             {
                 print("jump up");
                 transform.position = new Vector3(transform.position.x, ball.GetNextZone().GetRoadY(), transform.position.z);
                 transform.localScale = new Vector3(1, -1, 1);
-                
+                ball.Swap();
             }
             else
             {
@@ -57,12 +57,12 @@ public class BallNode : MonoBehaviour, CameraTargetable
         }
         else if (down)
         {
-            if (transform.localScale.y < 0 && ball.CanJump())
+            if (IsDown() && ball.CanJump())
             {
                 print("jump down");
                 transform.position = new Vector3(transform.position.x, ball.GetNextZone().GetRoadY(), transform.position.z);
                 transform.localScale = new Vector3(1, 1, 1);
-                
+                ball.Swap();
             }
             else
             {
@@ -112,4 +112,15 @@ public class BallNode : MonoBehaviour, CameraTargetable
         Bolt bolt = Instantiate(boltPrefab, transform.parent, true).GetComponent<Bolt>();
         bolt.transform.position = transform.position;
     }
+
+    private bool IsUp()
+    {
+        return transform.localScale.y > 0;
+    }
+
+    private bool IsDown()
+    {
+        return transform.localScale.y < 0;
+    }
+
 }

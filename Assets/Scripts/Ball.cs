@@ -4,8 +4,8 @@ using UnityEngine;
 public class Ball : MonoBehaviour {
 
     public BallNode ballNode;
-    private RoadZone otherRoadZone;
-    private RoadZone currentRoadZone;
+    public RoadZone otherRoadZone;
+    public RoadZone currentRoadZone;
 
     // Use this for initialization
     void Start () {
@@ -22,7 +22,7 @@ public class Ball : MonoBehaviour {
         var tmpRoadZone = collision.gameObject.GetComponent<RoadZone>();
         if (tmpRoadZone != null)
         {
-            print("roadZone name = " + tmpRoadZone.gameObject.name);
+            //print("roadZone name = " + tmpRoadZone.gameObject.name);
 
             // set object to current road if no road is set
             if (currentRoadZone == null)
@@ -52,10 +52,28 @@ public class Ball : MonoBehaviour {
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (otherRoadZone != null)
+        var roadzone = collision.gameObject.GetComponent<RoadZone>();
+        if (roadzone)
         {
-            otherRoadZone = null;
-        }       
+            var name = roadzone.road.gameObject.name;
+            print("exit " + name);
+
+            if (otherRoadZone != null && name == otherRoadZone.road.gameObject.name)
+                otherRoadZone = null;
+            if (currentRoadZone != null && name == currentRoadZone.road.gameObject.name)
+                currentRoadZone = null;
+        }
+
+
+        //var collisionID = collision.gameObject.GetInstanceID();
+
+        //if (otherRoadZone != null && otherRoadZone.GetInstanceID() == collision.gameObject.GetInstanceID())
+        //    otherRoadZone = null;
+
+        //var currentID = currentRoadZone.GetInstanceID();
+        //if (currentRoadZone != null && currentID == collisionID)
+        //    currentRoadZone = null;
+
     }
 
     public bool CanJump()
