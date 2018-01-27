@@ -4,11 +4,10 @@ using UnityEngine;
 public class Ball : MonoBehaviour {
 
     public BallNode ballNode;
-    public string currentZone = "";
-    public string nextZone = "";
-
-    public GameObject currentZoneGO;
-    public GameObject nextZoneGO;
+    private RoadZone otherRoadZone;
+    private GameObject otherRoad;
+    private RoadZone currentRoadZone;
+    private GameObject currentRoad;
 
     // Use this for initialization
     void Start () {
@@ -22,20 +21,69 @@ public class Ball : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.name);
-        var zone = collision.gameObject.name;
-
-        if (string.IsNullOrEmpty(currentZone))
+        otherRoadZone = collision.gameObject.GetComponent<RoadZone>();
+        if (otherRoadZone != null)
         {
-            currentZone = zone;
-            currentZoneGO = collision.gameObject;
-        }
+            otherRoad = otherRoadZone.road;
 
-        if (nextZone != zone && currentZone != zone)
-        {
-            nextZone = zone;
-            nextZoneGO = collision.gameObject;
+            // set object to current road if no road is set
+            if (currentRoadZone == null)
+            {
+                currentRoadZone = otherRoadZone;
+                currentRoad = otherRoad;
+            }
+
+            if (otherRoad.GetInstanceID() == currentRoad.GetInstanceID())
+            {
+                otherRoad = null;
+                otherRoadZone = null;
+            }
         }
+    }
+
+    public void Swap()
+    {
+        var tmpCurrentRoadZone = currentRoadZone;
+        currentRoadZone = otherRoadZone;
+        otherRoadZone = tmpCurrentRoadZone;
+
+        currentRoad = currentRoadZone.road;
+        otherRoad = otherRoadZone.road;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (otherRoadZone != null)
+        {
+            if (collision.gameObject.GetInstanceID() == otherRoadZone.GetInstanceID())
+            {
+                otherRoad = null;
+                otherRoadZone = null;
+            }
+        }       
+    }
+
+    public bool CanJumpUp()
+    {
+        if (otherRoadZone != null)
+        {
+            return otherRoadZone.gameObject.name == "down";
+        }
+        return false;
+    }
+
+    public bool CanJumpDown()
+    {
+        if (otherRoadZone != null)
+        {
+            return otherRoadZone.gameObject.name == "up";
+        }
+        return false;
+    }
+
+    public RoadZone GetNextZone()
+    {
+        return otherRoadZone; //nextZoneGO.GetComponent<RoadZone>();
     }
 
     public void Hit()

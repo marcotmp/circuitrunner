@@ -42,15 +42,16 @@ public class BallNode : MonoBehaviour, CameraTargetable
 
         if (up)
         {
-            if (ball.nextZone == "down")
+            if (ball.CanJumpUp())
             {
-                var roadZone = ball.nextZoneGO.GetComponent<RoadZone>();
-                transform.position = new Vector3(transform.position.x, roadZone.road.transform.position.y, transform.position.z);
+                print("jump up");
+                transform.position = new Vector3(transform.position.x, ball.GetNextZone().GetRoadY(), transform.position.z);
                 transform.localScale = new Vector3(1, -1, 1);
-                ball.nextZone = "";
+                ball.Swap();
             }
             else
             {
+                print("run upside");
                 transform.localScale = new Vector3(1, 1, 1);
             }
         }
@@ -79,6 +80,18 @@ public class BallNode : MonoBehaviour, CameraTargetable
     public float GetVelocity()
     {
         return speed;
+        if (ball.CanJumpDown())
+        {
+            print("jump up");
+            transform.position = new Vector3(transform.position.x, ball.GetNextZone().GetRoadY(), transform.position.z);
+            transform.localScale = new Vector3(1, 1, 1);
+            ball.Swap();
+        }
+        else
+        {
+            print("run upside");
+            transform.localScale = new Vector3(1, -1, 1);
+        }
     }
 
     public void Hit()
