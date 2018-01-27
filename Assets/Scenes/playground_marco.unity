@@ -235,6 +235,10 @@ Prefab:
       propertyPath: m_Name
       value: DeadZone (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1488491244750932, guid: 922adb83dbc4a454989f725f5d578aac, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 922adb83dbc4a454989f725f5d578aac, type: 2}
   m_IsPrefabParent: 0
@@ -375,6 +379,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1488491244750932, guid: 922adb83dbc4a454989f725f5d578aac, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 922adb83dbc4a454989f725f5d578aac, type: 2}
   m_IsPrefabParent: 0
@@ -428,7 +436,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1754942685613302, guid: c0bf09bf0ad672c4e8fae9d561288078, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375571187585734, guid: c0bf09bf0ad672c4e8fae9d561288078, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0bf09bf0ad672c4e8fae9d561288078, type: 2}
@@ -482,6 +494,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1706092187459732, guid: b06ce1916b72b9841990cd350847f4b9, type: 2}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -4087464717476244675, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b06ce1916b72b9841990cd350847f4b9, type: 2}
   m_IsPrefabParent: 0
@@ -527,6 +544,10 @@ Prefab:
     - target: {fileID: 1488491244750932, guid: 922adb83dbc4a454989f725f5d578aac, type: 2}
       propertyPath: m_Name
       value: DeadZone (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488491244750932, guid: 922adb83dbc4a454989f725f5d578aac, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 922adb83dbc4a454989f725f5d578aac, type: 2}
