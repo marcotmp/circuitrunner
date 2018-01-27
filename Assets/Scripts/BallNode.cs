@@ -19,14 +19,15 @@ public class BallNode : MonoBehaviour, CameraTargetable
     void Start()
     {
         currentSpeed = speed;
+        transform.rotation = Quaternion.Euler(
+            new Vector3(transform.rotation.x, transform.rotation.y, (float)direction)
+        );
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position += transform.right * speed * Time.deltaTime;
-
-        //transform.rotation = Quaternion.Euler(new Vector3(0, 0, (int)direction));
 
         var up = Input.GetKeyDown(KeyCode.UpArrow);
         var down = Input.GetKeyDown(KeyCode.DownArrow);
