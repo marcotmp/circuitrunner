@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
 
     public BallNode ballNode;
+    public CameraFollows cameraFollows;
 
 	// Use this for initialization
 	void Start () {
@@ -18,5 +19,7 @@ public class GameController : MonoBehaviour {
     public void GameOver()
     {
         // show gameover screen
+        // camera shake
+        cameraFollows.Shake();
     }
 }

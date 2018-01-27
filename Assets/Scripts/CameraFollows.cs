@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 
 public class CameraFollows : MonoBehaviour {
 
@@ -9,6 +10,8 @@ public class CameraFollows : MonoBehaviour {
     public float smoothVelocity;
 
     private CameraTargetable targetable;
+    private Vector3 currentPosition;
+    private bool shakeMode = false;
 
     private void Start()
     {
@@ -17,6 +20,17 @@ public class CameraFollows : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+        if (shakeMode)
+        {
+            var x = Random.Range(-1, 1);
+            var y = Random.Range(-1, 1);
+            var z = Random.Range(-1, 1);
+            transform.position = currentPosition + new Vector3(x, y, z) * 0.1f;
+
+            return;
+        }
+
         Vector3 targetPos = targetable.GetPosition();
         Vector3 newPos;
 
@@ -40,5 +54,17 @@ public class CameraFollows : MonoBehaviour {
         }
 
         transform.position = newPos;
+    }
+
+    public void Shake()
+    {
+        shakeMode = true;
+        currentPosition = transform.position;
+        Invoke("StopShake", 0.3f);
+    }
+
+    public void StopShake()
+    {
+        shakeMode = false;
     }
 }

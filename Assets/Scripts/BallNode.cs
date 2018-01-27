@@ -27,7 +27,7 @@ public class BallNode : MonoBehaviour, CameraTargetable
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.right * speed * Time.deltaTime;
+        transform.position += transform.right * currentSpeed * Time.deltaTime;
 
         //transform.rotation = Quaternion.Euler(new Vector3(0, 0, (int)direction));
 

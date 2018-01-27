@@ -367,6 +367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballNode: {fileID: 316411244}
+  cameraFollows: {fileID: 14252921}
 --- !u!114 &316411244 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114881255630585276, guid: b06ce1916b72b9841990cd350847f4b9,
