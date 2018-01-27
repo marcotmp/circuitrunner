@@ -1,11 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class Ball : MonoBehaviour {
-        
-	// Use this for initialization
-	void Start () {
+
+    public BallNode ballNode;
+    public string currentZone = "";
+    public string nextZone = "";
+
+    public GameObject currentZoneGO;
+    public GameObject nextZoneGO;
+
+    // Use this for initialization
+    void Start () {
         
 	}
 	
@@ -16,7 +22,24 @@ public class Ball : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Debug.Log("collision");
-        //Destroy(collision.gameObject);
+        Debug.Log(collision.gameObject.name);
+        var zone = collision.gameObject.name;
+
+        if (string.IsNullOrEmpty(currentZone))
+        {
+            currentZone = zone;
+            currentZoneGO = collision.gameObject;
+        }
+
+        if (nextZone != zone && currentZone != zone)
+        {
+            nextZone = zone;
+            nextZoneGO = collision.gameObject;
+        }
+    }
+
+    public void Hit()
+    {
+        ballNode.Hit();
     }
 }

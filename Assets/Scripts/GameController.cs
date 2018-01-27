@@ -2,22 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeadZone : MonoBehaviour {
+public class GameController : MonoBehaviour {
+
+    public BallNode ballNode;
 
 	// Use this for initialization
 	void Start () {
-		
+        ballNode.OnDie = GameOver;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void GameOver()
     {
-        var ball = collision.gameObject.GetComponent<Ball>();
-        if (ball)
-            ball.Hit();
+        // show gameover screen
     }
 }

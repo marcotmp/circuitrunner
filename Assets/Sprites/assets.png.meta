@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b358094c696265640ada2312cc680830
-timeCreated: 1517029823
+timeCreated: 1517057362
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
@@ -237,10 +237,10 @@ TextureImporter:
       name: assets_9
       rect:
         serializedVersion: 2
-        x: 448
-        y: 63
-        width: 64
-        height: 64
+        x: 467
+        y: 82
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
