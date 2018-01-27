@@ -18,10 +18,7 @@ public class BallNode : MonoBehaviour, CameraTargetable
     // Use this for initialization
     void Start()
     {
-        direction = Direction.RIGHT;
         currentSpeed = speed;
-
-        //Invoke("ChangeDirection", 5f);
     }
 
     // Update is called once per frame
@@ -60,11 +57,6 @@ public class BallNode : MonoBehaviour, CameraTargetable
 
         if (mouseLeft)
             Fire();
-    }
-
-    public void ChangeDirection()
-    {
-        direction = Direction.DOWN;
     }
 
     public Direction GetDirection()
@@ -110,5 +102,6 @@ public class BallNode : MonoBehaviour, CameraTargetable
     {
         Bolt bolt = Instantiate(boltPrefab, transform.parent, true).GetComponent<Bolt>();
         bolt.transform.position = transform.position;
+        bolt.transform.rotation = transform.rotation;
     }
 }
