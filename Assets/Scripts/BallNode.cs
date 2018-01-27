@@ -45,7 +45,12 @@ public class BallNode : MonoBehaviour, CameraTargetable
             if (IsUp() && ball.CanJump())
             {
                 print("jump up");
-                transform.position = new Vector3(transform.position.x, ball.GetNextZone().GetRoadY(), transform.position.z);
+
+                if (IsHorizontalMove())
+                    transform.position = new Vector3(transform.position.x, ball.GetNextZone().GetRoadY(), transform.position.z);
+                else
+                    transform.position = new Vector3(ball.GetNextZone().GetRoadX(), transform.position.y, transform.position.z);
+
                 transform.localScale = new Vector3(1, -1, 1);
                 ball.Swap();
             }
@@ -60,7 +65,12 @@ public class BallNode : MonoBehaviour, CameraTargetable
             if (IsDown() && ball.CanJump())
             {
                 print("jump down");
-                transform.position = new Vector3(transform.position.x, ball.GetNextZone().GetRoadY(), transform.position.z);
+
+                if (IsHorizontalMove())
+                    transform.position = new Vector3(transform.position.x, ball.GetNextZone().GetRoadY(), transform.position.z);
+                else
+                    transform.position = new Vector3(ball.GetNextZone().GetRoadX(), transform.position.y, transform.position.z);
+
                 transform.localScale = new Vector3(1, 1, 1);
                 ball.Swap();
             }
@@ -73,6 +83,16 @@ public class BallNode : MonoBehaviour, CameraTargetable
 
         if (mouseLeft)
             Fire();
+    }
+
+    private bool IsHorizontalMove()
+    {
+        return transform.rotation.eulerAngles.z == 0 || transform.rotation.eulerAngles.z == 128;
+    }
+
+    private bool IsVerticalMove()
+    {
+        return transform.rotation.eulerAngles.z == 0 || transform.rotation.eulerAngles.z == 128;
     }
 
     public void ChangeDirection()

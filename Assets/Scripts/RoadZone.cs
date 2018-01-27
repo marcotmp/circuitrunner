@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,11 @@ public class RoadZone : MonoBehaviour {
     public float GetRoadY()
     {
         return road.transform.position.y;
+    }
+
+    public float GetRoadX()
+    {
+        return road.transform.position.x;
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
