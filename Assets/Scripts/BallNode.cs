@@ -18,18 +18,16 @@ public class BallNode : MonoBehaviour, CameraTargetable
     // Use this for initialization
     void Start()
     {
-        direction = Direction.RIGHT;
         currentSpeed = speed;
-
-        //Invoke("ChangeDirection", 5f);
+        transform.rotation = Quaternion.Euler(
+            new Vector3(transform.rotation.x, transform.rotation.y, (float)direction)
+        );
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position += transform.right * currentSpeed * Time.deltaTime;
-
-        //transform.rotation = Quaternion.Euler(new Vector3(0, 0, (int)direction));
 
         var up = Input.GetKeyDown(KeyCode.UpArrow);
         var down = Input.GetKeyDown(KeyCode.DownArrow);
@@ -75,11 +73,6 @@ public class BallNode : MonoBehaviour, CameraTargetable
             Fire();
     }
 
-    public void ChangeDirection()
-    {
-        direction = Direction.DOWN;
-    }
-
     public Direction GetDirection()
     {
         return direction;
@@ -111,6 +104,7 @@ public class BallNode : MonoBehaviour, CameraTargetable
     {
         Bolt bolt = Instantiate(boltPrefab, transform.parent, true).GetComponent<Bolt>();
         bolt.transform.position = transform.position;
+        bolt.transform.rotation = transform.rotation;
     }
 
     private bool IsUp()
