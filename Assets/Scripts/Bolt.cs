@@ -15,7 +15,7 @@ public class Bolt : MonoBehaviour {
         transform.position += transform.right * speed * Time.deltaTime;
     }
 
-    public void OnHit()
+    public void Hit()
     {
         Disappear();
     }

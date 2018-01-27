@@ -1,43 +1,45 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class LineSwitch : MonoBehaviour {
+public class CircleSwitch : MonoBehaviour {
 
-    public enum LineSwitchAngle { ZERO=0, NINE=90, ONEEIGHT=180, TWOSEVEN=270 };
-    public LineSwitchAngle startingAngle;
-    
+    public enum CircleSwitchAngle { ZERO = 0, NINE = 90, ONEEIGHT = 180, TWOSEVEN = 270 };
+    public CircleSwitchAngle startingAngle;
+
     // key - switch angle
     // value - ball angle
     Dictionary<float, bool> passageRules = new Dictionary<float, bool>()
     {
-        { (float)LineSwitchAngle.ZERO, true },
-        { (float)LineSwitchAngle.NINE, false },
-        { (float)LineSwitchAngle.ONEEIGHT, true },
-        { (float)LineSwitchAngle.TWOSEVEN, false }
+        { (float)CircleSwitchAngle.ZERO, true },
+        { (float)CircleSwitchAngle.NINE, true },
+        { (float)CircleSwitchAngle.ONEEIGHT, false },
+        { (float)CircleSwitchAngle.TWOSEVEN, false }
     };
 
-    Dictionary<float, LineSwitchAngle> entryAngles = new Dictionary<float, LineSwitchAngle>()
+    Dictionary<float, CircleSwitchAngle> entryAngles = new Dictionary<float, CircleSwitchAngle>()
     {
-        { 0, LineSwitchAngle.ONEEIGHT },
-        { 180, LineSwitchAngle.ZERO },
-        { 90, LineSwitchAngle.TWOSEVEN },
-        { 270, LineSwitchAngle.NINE }
+        { 0, CircleSwitchAngle.ONEEIGHT },
+        { 180, CircleSwitchAngle.ZERO },
+        { 90, CircleSwitchAngle.TWOSEVEN },
+        { 270, CircleSwitchAngle.NINE }
     };
 
-    LineSwitchAngle currentAngle;
-    List<LineSwitchAngle> switchOrder = new List<LineSwitchAngle>()
+    CircleSwitchAngle currentAngle;
+    List<CircleSwitchAngle> switchOrder = new List<CircleSwitchAngle>()
     {
-        LineSwitchAngle.ZERO, LineSwitchAngle.NINE, LineSwitchAngle.ONEEIGHT, LineSwitchAngle.TWOSEVEN
+        CircleSwitchAngle.ZERO, CircleSwitchAngle.NINE, CircleSwitchAngle.ONEEIGHT, CircleSwitchAngle.TWOSEVEN
     };
     int currentAngleIndex = 0;
     bool locked = false;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         currentAngle = startingAngle;
         currentAngleIndex = switchOrder.IndexOf(currentAngle);
         UpdateAngle();
-	}
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -61,8 +63,8 @@ public class LineSwitch : MonoBehaviour {
         {
             locked = true;
             float ballAngle = (float)ball.GetDirection();
-            LineSwitchAngle entryAngle = entryAngles[ballAngle];
-            float finalAngle = Mathf.Abs((float)entryAngle - (float)currentAngle);
+            CircleSwitchAngle entryAngle = entryAngles[ballAngle];
+            var finalAngle = GetFinalAngle(entryAngle, currentAngle);
 
             // the ball didn't enter from the right direction
             if (!passageRules[finalAngle])
@@ -70,6 +72,15 @@ public class LineSwitch : MonoBehaviour {
                 ball.Hit();
             }
         }
+    }
+
+    float GetFinalAngle(CircleSwitchAngle entryAngle, CircleSwitchAngle currentAngle)
+    {
+        float finalAngle = (float)entryAngle - (float)currentAngle;
+        if (finalAngle < 0)
+            finalAngle = 360 + finalAngle;
+
+        return finalAngle;
     }
 
     void UpdateAngle()
