@@ -2,9 +2,20 @@
 using UnityEngine;
 
 public class Ball : MonoBehaviour {
+
     public BallNode ballNode;
     private RoadZone otherRoadZone;
     private RoadZone currentRoadZone;
+
+    // Use this for initialization
+    void Start () {
+        
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -43,10 +54,7 @@ public class Ball : MonoBehaviour {
     {
         if (otherRoadZone != null)
         {
-            if (collision.gameObject.GetInstanceID() == otherRoadZone.GetInstanceID())
-            {
-                otherRoadZone = null;
-            }
+            otherRoadZone = null;
         }       
     }
 
@@ -63,5 +71,10 @@ public class Ball : MonoBehaviour {
     public void Hit()
     {
         ballNode.Hit();
+    }
+
+    public Direction GetDirection()
+    {
+        return ballNode.GetDirection();
     }
 }
