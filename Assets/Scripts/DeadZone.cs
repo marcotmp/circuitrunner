@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ball : MonoBehaviour {
+public class DeadZone : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +16,6 @@ public class Ball : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Debug.Log("collision");
-        //Destroy(collision.gameObject);
+        Destroy(collision.gameObject);
     }
 }
