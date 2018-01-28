@@ -82,6 +82,7 @@ public class BallNode : MonoBehaviour
 
         if (up)
         {
+            currentSpeed = 0;
             if (IsUp() && ball.CanJump())
             {
                 //print("jump up");
@@ -98,6 +99,7 @@ public class BallNode : MonoBehaviour
         }
         else if (down)
         {
+            currentSpeed = 0;
             if (IsDown() && ball.CanJump())
             {
                 //print("jump down");
@@ -208,6 +210,7 @@ public class BallNode : MonoBehaviour
 
         transform.localScale = new Vector3(1, -1, 1);
         ball.Swap();
+        currentSpeed = speed;
     }
 
     void JumpDown()
@@ -219,6 +222,7 @@ public class BallNode : MonoBehaviour
 
         transform.localScale = new Vector3(1, 1, 1);
         ball.Swap();
+        currentSpeed = speed;
     }
 
     public void AlignToRoad()
@@ -252,11 +256,13 @@ public class BallNode : MonoBehaviour
     void GoUp()
     {
         transform.localScale = new Vector3(1, 1, 1);
+        currentSpeed = speed;
     }
 
     void GoDown()
     {
         transform.localScale = new Vector3(1, -1, 1);
+        currentSpeed = speed;
     }
 
     private bool IsUp()

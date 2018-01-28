@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CircleSwitch : MonoBehaviour {
 
+    public bool canRotate = true;
     public enum CircleSwitchAngle { ZERO = 0, NINE = 90, ONEEIGHT = 180, TWOSEVEN = 270 };
     public CircleSwitchAngle startingAngle;
 
@@ -46,7 +47,7 @@ public class CircleSwitch : MonoBehaviour {
         Bolt projectile = collision.GetComponent<Bolt>();
         if (projectile != null)
         {
-            if (!rotationLocked)
+            if (!rotationLocked && canRotate)
             {
                 // signal projectile to destroy itself
                 projectile.Hit();
@@ -88,7 +89,6 @@ public class CircleSwitch : MonoBehaviour {
             return 0;
         if (angle == 270)
             return 0;
-
 
         return 0;
     }
