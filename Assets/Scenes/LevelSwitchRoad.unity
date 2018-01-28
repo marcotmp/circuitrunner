@@ -272,7 +272,7 @@ Prefab:
         type: 2}
       propertyPath: winMenu
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1772382171}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b68bc1f9496b4954f8c1b4f7a74e9e24, type: 2}
   m_IsPrefabParent: 0
@@ -2316,8 +2316,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1638958733}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 278, y: 156.5, z: 0}
-  m_LocalScale: {x: 0.695, y: 0.695, z: 0.695}
+  m_LocalPosition: {x: 512, y: 384, z: 0}
+  m_LocalScale: {x: 1.28, y: 1.28, z: 1.28}
   m_Children:
   - {fileID: 1928867313}
   - {fileID: 1772382170}
@@ -2754,6 +2754,11 @@ Prefab:
 --- !u!224 &1772382170 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224420240543525530, guid: 982bbd6846306b64c9e00a0174841560,
+    type: 2}
+  m_PrefabInternal: {fileID: 1772382169}
+--- !u!1 &1772382171 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1270083251829656, guid: 982bbd6846306b64c9e00a0174841560,
     type: 2}
   m_PrefabInternal: {fileID: 1772382169}
 --- !u!1001 &1808967161
