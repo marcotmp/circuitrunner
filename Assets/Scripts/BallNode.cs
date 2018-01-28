@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class BallNode : MonoBehaviour, CameraTargetable
 {
+    public enum BallState
+    {
+        Idle,
+        Running,
+        Rotating,
+        Dead,
+        Win
+    };
+
     public float speed = 1;
     public Direction direction;
     public float movementAngle = 0;
@@ -13,6 +22,8 @@ public class BallNode : MonoBehaviour, CameraTargetable
 
     public Action OnDie { get; internal set; }
     public Action OnWin { get; internal set; }
+
+    private BallState state;
 
     private float currentSpeed;
 
@@ -29,9 +40,10 @@ public class BallNode : MonoBehaviour, CameraTargetable
         transform.rotation = Quaternion.Euler(
             new Vector3(transform.rotation.x, transform.rotation.y, (float)direction)
         );
+        state = BallState.Running;
     }
 
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -56,8 +68,11 @@ public class BallNode : MonoBehaviour, CameraTargetable
                 startAngle = finalAngle;
                 rotateAmount = 0;
                 actualAngle = (int)Clamp(finalAngle);
+                state = BallState.Running;
             }
         }
+
+        if (state != BallState.Running) return;
 
         var up = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
         var down = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
@@ -104,18 +119,11 @@ public class BallNode : MonoBehaviour, CameraTargetable
         if (mouseLeft)
             Fire();
     }
-
-    public void Win()
-    {
-        currentSpeed = 0;
-
-        if (OnWin != null)
-            OnWin();
-    }
-
+    
     public void RotateAmount(float angle)
     {
         rotateAmount = angle;
+        state = BallState.Rotating;
     }
 
     private bool IsHorizontalMove()
@@ -148,6 +156,17 @@ public class BallNode : MonoBehaviour, CameraTargetable
         return speed;
     }
 
+
+    public void Win()
+    {
+        currentSpeed = 0;
+
+        state = BallState.Win;
+
+        if (OnWin != null)
+            OnWin();
+    }
+
     public void Hit()
     {
         Die();
@@ -156,6 +175,8 @@ public class BallNode : MonoBehaviour, CameraTargetable
     public void Die()
     {
         currentSpeed = 0;
+
+        state = BallState.Dead;
 
         if (OnDie != null)
             OnDie();

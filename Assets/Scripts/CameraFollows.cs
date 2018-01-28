@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraFollows : MonoBehaviour {
 
@@ -8,7 +7,7 @@ public class CameraFollows : MonoBehaviour {
     public float lroffset = 5f;
     public float udoffset = 3f;
     public float smoothVelocity;
-
+    public System.Action OnShakeComplete;
     private CameraTargetable targetable;
     private Vector3 currentPosition;
     private bool shakeMode = false;
@@ -66,5 +65,7 @@ public class CameraFollows : MonoBehaviour {
     public void StopShake()
     {
         shakeMode = false;
+        if (OnShakeComplete != null)
+            OnShakeComplete();
     }
 }
