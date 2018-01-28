@@ -5,19 +5,29 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
-
-    public BallNode ballNode;
+    
+    public GameObject ballNodePrefab;
     public CameraFollows cameraFollows;
     public GameObject gameOverMenu;
     public GameObject winMenu;
 
     public StartPoint startPoint;
 
-	void Start () {
+    BallNode ballNode;
+
+    private void Awake()
+    {
+        ballNode = Instantiate(ballNodePrefab).GetComponent<BallNode>();
+        ballNode.gameObject.SetActive(false);
+
+        cameraFollows.target = ballNode.gameObject;
+        startPoint.ballNode = ballNode.gameObject;
+    }
+
+    void Start () {
         ballNode.OnDie = GameOver;
         ballNode.OnWin = Win;
-
-        startPoint.ballNode = ballNode.gameObject;
+        
         Invoke("StartGame", .5f);
     }
 
@@ -27,9 +37,7 @@ public class GameController : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
-        startPoint.ballNode = ballNode.gameObject;
-	}
+    void Update () { }
 
     void StartGame()
     {

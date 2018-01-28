@@ -2,6 +2,7 @@
 
 public class CameraFollows : MonoBehaviour {
 
+    [HideInInspector]
     public GameObject target;
     public float z;
 
