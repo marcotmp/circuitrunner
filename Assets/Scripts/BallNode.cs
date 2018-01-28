@@ -108,7 +108,7 @@ public class BallNode : MonoBehaviour, CameraTargetable
 
     private bool IsHorizontalMove()
     {
-        return transform.rotation.eulerAngles.z == 0 || transform.rotation.eulerAngles.z == 128;
+        return transform.rotation.eulerAngles.z == 0 || transform.rotation.eulerAngles.z == 180;
     }
 
     private bool IsVerticalMove()
@@ -152,8 +152,13 @@ public class BallNode : MonoBehaviour, CameraTargetable
     public void Fire()
     {
         Bolt bolt = Instantiate(boltPrefab, transform.parent, true).GetComponent<Bolt>();
-        Vector3 newPos = new Vector3(transform.position.x + .5f, transform.position.y + .1f, transform.position.z);
-        bolt.transform.position =  newPos;
+        Vector3 newPos;
+        if (IsHorizontalMove())
+            newPos = new Vector3(transform.position.x + .5f, transform.position.y + .1f, transform.position.z);
+        else
+            newPos = new Vector3(transform.position.x + .1f, transform.position.y + .5f, transform.position.z);
+
+        bolt.transform.position = newPos;
 
         bolt.transform.rotation = transform.rotation;
     }
