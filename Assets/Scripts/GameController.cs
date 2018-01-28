@@ -10,10 +10,11 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ballNode.OnDie = GameOver;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        ballNode.OnWin = Win;
+    }
+
+    // Update is called once per frame
+    void Update () {
 	}
 
     public void GameOver()
@@ -21,5 +22,10 @@ public class GameController : MonoBehaviour {
         // show gameover screen
         // camera shake
         cameraFollows.Shake();
+    }
+
+    public void Win()
+    {
+        print("win");
     }
 }

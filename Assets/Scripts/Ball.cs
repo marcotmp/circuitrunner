@@ -44,6 +44,11 @@ public class Ball : MonoBehaviour {
         }
     }
 
+    public void Win()
+    {
+        ballNode.Win();
+    }
+
     public void Swap()
     {
         var tmpCurrentRoadZone = currentRoadZone;

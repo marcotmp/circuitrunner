@@ -12,6 +12,7 @@ public class BallNode : MonoBehaviour, CameraTargetable
     public GameObject boltPrefab;
 
     public Action OnDie { get; internal set; }
+    public Action OnWin { get; internal set; }
 
     private float currentSpeed;
 
@@ -99,6 +100,14 @@ public class BallNode : MonoBehaviour, CameraTargetable
 
         if (mouseLeft)
             Fire();
+    }
+
+    public void Win()
+    {
+        currentSpeed = 0;
+
+        if (OnWin != null)
+            OnWin();
     }
 
     public void RotateAmount(float angle)
