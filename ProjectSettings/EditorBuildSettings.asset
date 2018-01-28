@@ -12,20 +12,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial.unity
     guid: 4f5e8f17e0ceb7b41b76ca45a5a5d94f
   - enabled: 1
+    path: Assets/Scenes/LevelLine3.unity
+    guid: dcd5f26bed3544f4eba2c11e2f3e8779
+  - enabled: 1
     path: Assets/Scenes/LevelTutorial1.unity
     guid: c40a35d38599b5747b93eb744325ebca
-  - enabled: 1
-    path: Assets/Scenes/LevelEasyRoad.unity
-    guid: d6aae744dac8e3044be2831e57b0ac04
   - enabled: 1
     path: Assets/Scenes/LevelLine1.unity
     guid: c35b9a833b45f5f448d782d4b5667e89
   - enabled: 1
+    path: Assets/Scenes/LevelEasyRoad.unity
+    guid: d6aae744dac8e3044be2831e57b0ac04
+  - enabled: 1
     path: Assets/Scenes/LevelJumping.unity
     guid: 4ab873659141fbc40969d5ca26fdddbd
-  - enabled: 1
-    path: Assets/Scenes/LevelLine3.unity
-    guid: dcd5f26bed3544f4eba2c11e2f3e8779
   - enabled: 1
     path: Assets/Scenes/LevelAreas1.unity
     guid: 30b4501bbe2b19c498f9eb2e952b27f8
