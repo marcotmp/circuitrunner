@@ -83,7 +83,7 @@ public class CircleSwitch : MonoBehaviour {
         if (angle == 0)
             return -90;
         if (angle == 90)
-            return 0;
+            return 90;
         if (angle == 180)
             return 0;
         if (angle == 270)

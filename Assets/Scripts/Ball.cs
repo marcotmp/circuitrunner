@@ -64,17 +64,6 @@ public class Ball : MonoBehaviour {
             if (currentRoadZone != null && name == currentRoadZone.road.gameObject.name)
                 currentRoadZone = null;
         }
-
-
-        //var collisionID = collision.gameObject.GetInstanceID();
-
-        //if (otherRoadZone != null && otherRoadZone.GetInstanceID() == collision.gameObject.GetInstanceID())
-        //    otherRoadZone = null;
-
-        //var currentID = currentRoadZone.GetInstanceID();
-        //if (currentRoadZone != null && currentID == collisionID)
-        //    currentRoadZone = null;
-
     }
 
     public float GetAngle()
@@ -99,11 +88,29 @@ public class Ball : MonoBehaviour {
 
     public void Hit()
     {
+        gameObject.GetComponent<Animator>().Play("Ball-Collision");
+        Invoke("Hide", .5f);
+
         ballNode.Hit();
+    }
+
+    public void Jump()
+    {
+        gameObject.GetComponent<Animator>().Play("Ball-Jump");
+    }
+
+    public void Flip()
+    {
+        gameObject.GetComponent<Animator>().Play("Ball-Flip");
     }
 
     public Direction GetDirection()
     {
         return ballNode.GetDirection();
+    }
+
+    void Hide()
+    {
+        gameObject.SetActive(false);
     }
 }
