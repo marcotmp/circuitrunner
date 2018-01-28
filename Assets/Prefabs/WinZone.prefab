@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4772374911398198}
   - component: {fileID: 212850595491684798}
   - component: {fileID: 61891986609337648}
+  - component: {fileID: 114068915169098914}
   m_Layer: 0
   m_Name: WinZone
   m_TagString: Untagged
@@ -66,6 +67,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.49880695, y: 0.4988072}
   m_EdgeRadius: 0
+--- !u!114 &114068915169098914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873769824464728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b80a3f062559e45aad8c6ddd84e9c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212850595491684798
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -101,7 +113,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300016, guid: b358094c696265640ada2312cc680830, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.7241379, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

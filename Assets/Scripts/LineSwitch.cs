@@ -60,9 +60,9 @@ public class LineSwitch : MonoBehaviour {
         if (ball != null)
         {
             locked = true;
-            float ballAngle = (float)ball.GetDirection();
+            float ballAngle = (float)ball.GetAngle();
             LineSwitchAngle entryAngle = entryAngles[ballAngle];
-            float finalAngle = Mathf.Abs((float)entryAngle - (float)currentAngle);
+            float finalAngle = GetFinalAngle(entryAngle, currentAngle);
 
             // the ball didn't enter from the right direction
             if (!passageRules[finalAngle])
@@ -70,6 +70,24 @@ public class LineSwitch : MonoBehaviour {
                 ball.Hit();
             }
         }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        Ball ball = collision.gameObject.GetComponent<Ball>();
+        if (ball != null)
+        {
+            locked = false;
+        }
+    }
+
+    float GetFinalAngle(LineSwitchAngle entryAngle, LineSwitchAngle currentAngle)
+    {
+        float finalAngle = (float)entryAngle - (float)currentAngle;
+        if (finalAngle < 0)
+            finalAngle = 360 + finalAngle;
+
+        return finalAngle;
     }
 
     void UpdateAngle()
