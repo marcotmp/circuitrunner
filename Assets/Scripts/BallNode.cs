@@ -22,6 +22,7 @@ public class BallNode : MonoBehaviour
     public Action OnWin { get; internal set; }
 
     private BallState state;
+    KeyCode upArrowCode, downArrowCode, upKeyCode, downKeyCode;
 
     private float currentSpeed;
 
@@ -35,9 +36,7 @@ public class BallNode : MonoBehaviour
     float flipTime = .05f;
     
     // Use this for initialization
-    void Start()
-    {
-    }
+    void Start() { }
 
     // Update is called once per frame
     void Update()
@@ -45,62 +44,11 @@ public class BallNode : MonoBehaviour
         transform.position += transform.right * currentSpeed * Time.deltaTime;
 
         if (rotateAmount != 0)
-        {
-            finalAngle = startAngle + rotateAmount;
-            //deltaAngle = (finalAngle - startAngle);
-            var sign = finalAngle - startAngle;
-            if (sign > 0)
-                deltaAngle = Mathf.Abs(deltaAngle);
-            else
-                deltaAngle = Mathf.Abs(deltaAngle) * -1;
-
-            actualAngle += deltaAngle * currentSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.Euler(0, 0, actualAngle);
-            if (deltaAngle > 0 && actualAngle > finalAngle || deltaAngle < 0 && actualAngle < finalAngle)
-            {
-                finalAngle = Clamp(finalAngle);
-                transform.rotation = Quaternion.Euler(0, 0, finalAngle);
-                startAngle = finalAngle;
-                rotateAmount = 0;
-                actualAngle = (int)Clamp(finalAngle);
-                state = BallState.Running;
-
-                AlignToRoad();
-            }
-        }
+            RotateBall();
 
         if (state != BallState.Running) return;
 
-        KeyCode upArrowCode, downArrowCode, upKeyCode, downKeyCode;
-                
-        if (actualAngle > 45 && actualAngle < 135)
-        {
-            upKeyCode = KeyCode.A;
-            downKeyCode = KeyCode.D;
-            upArrowCode = KeyCode.RightArrow;
-            downArrowCode = KeyCode.LeftArrow;
-        }
-        else if (actualAngle > 135 && actualAngle < 225)
-        {
-            upKeyCode = KeyCode.S;
-            downKeyCode = KeyCode.W;
-            upArrowCode = KeyCode.DownArrow;
-            downArrowCode = KeyCode.UpArrow;
-        }
-        else if (actualAngle > 225 && actualAngle < 315)
-        {
-            upKeyCode = KeyCode.D;
-            downKeyCode = KeyCode.A;
-            upArrowCode = KeyCode.LeftArrow;
-            downArrowCode = KeyCode.RightArrow;
-        }
-        else
-        {
-            upKeyCode = KeyCode.W;
-            downKeyCode = KeyCode.S;
-            upArrowCode = KeyCode.UpArrow;
-            downArrowCode = KeyCode.DownArrow;
-        }
+        UpdateKeyCodes();
 
         var up = Input.GetKeyDown(upArrowCode) || Input.GetKeyDown(upKeyCode);
         var down = Input.GetKeyDown(downArrowCode) || Input.GetKeyDown(downKeyCode);
@@ -146,6 +94,63 @@ public class BallNode : MonoBehaviour
 
         if (mouseLeft)
             Fire();
+    }
+
+    void RotateBall()
+    {
+        finalAngle = startAngle + rotateAmount;
+        //deltaAngle = (finalAngle - startAngle);
+        var sign = finalAngle - startAngle;
+        if (sign > 0)
+            deltaAngle = Mathf.Abs(deltaAngle);
+        else
+            deltaAngle = Mathf.Abs(deltaAngle) * -1;
+
+        actualAngle += deltaAngle * currentSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.Euler(0, 0, actualAngle);
+        if (deltaAngle > 0 && actualAngle > finalAngle || deltaAngle < 0 && actualAngle < finalAngle)
+        {
+            finalAngle = Clamp(finalAngle);
+            transform.rotation = Quaternion.Euler(0, 0, finalAngle);
+            startAngle = finalAngle;
+            rotateAmount = 0;
+            actualAngle = (int)Clamp(finalAngle);
+            state = BallState.Running;
+
+            AlignToRoad();
+        }
+    }
+
+    void UpdateKeyCodes()
+    {
+        if (actualAngle > 45 && actualAngle < 135)
+        {
+            upKeyCode = KeyCode.A;
+            downKeyCode = KeyCode.D;
+            upArrowCode = KeyCode.RightArrow;
+            downArrowCode = KeyCode.LeftArrow;
+        }
+        else if (actualAngle > 135 && actualAngle < 225)
+        {
+            upKeyCode = KeyCode.S;
+            downKeyCode = KeyCode.W;
+            upArrowCode = KeyCode.DownArrow;
+            downArrowCode = KeyCode.UpArrow;
+        }
+        else if (actualAngle > 225 && actualAngle < 315)
+        {
+            upKeyCode = KeyCode.D;
+            downKeyCode = KeyCode.A;
+            upArrowCode = KeyCode.LeftArrow;
+            downArrowCode = KeyCode.RightArrow;
+        }
+        else
+        {
+            upKeyCode = KeyCode.W;
+            downKeyCode = KeyCode.S;
+            upArrowCode = KeyCode.UpArrow;
+            downArrowCode = KeyCode.DownArrow;
+        }
     }
 
     public void StartRun()
