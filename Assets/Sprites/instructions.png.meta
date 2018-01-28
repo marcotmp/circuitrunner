@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 47b8ff1756dac924288ae46066284635
-timeCreated: 1517153179
+guid: 225fd9815914cee42a36aa57f5bb2f77
+timeCreated: 1517154387
 licenseType: Pro
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Artboard 31_0
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -32,7 +31,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 1
     aniso: -1
     mipBias: -1
     wrapU: 1
@@ -41,13 +40,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -95,21 +94,7 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Artboard 31_0
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 1
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
     physicsShape: []
   spritePackingTag: 
