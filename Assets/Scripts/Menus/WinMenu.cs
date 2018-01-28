@@ -14,7 +14,7 @@ public class WinMenu : MonoBehaviour {
         gameObject.SetActive(true);
         var nextScene = SceneManager.GetActiveScene().buildIndex + 1;
 
-        if (nextScene >= SceneManager.sceneCount)
+        if (nextScene >= SceneManager.sceneCountInBuildSettings)
         {
             thanksPlaying.gameObject.SetActive(true);
             nextLevelBtn.gameObject.SetActive(false);
