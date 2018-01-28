@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour {
         ballNode.OnDie = GameOver;
         ballNode.OnWin = Win;
 
+        startPoint.ballNode = ballNode.gameObject;
         Invoke("StartGame", .5f);
     }
 

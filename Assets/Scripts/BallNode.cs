@@ -144,7 +144,8 @@ public class BallNode : MonoBehaviour
 
     public void SetStartAngle(BallStartAngle startAngle)
     {
-        this.startAngle = (float)startAngle;
+        actualAngle = (float)startAngle;
+        transform.rotation = Quaternion.Euler(0, 0, actualAngle);
     }
 
     public Vector3 GetPosition()
@@ -156,7 +157,6 @@ public class BallNode : MonoBehaviour
     {
         return speed;
     }
-
 
     public void Win()
     {
