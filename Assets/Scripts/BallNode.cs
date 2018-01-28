@@ -37,23 +37,26 @@ public class BallNode : MonoBehaviour, CameraTargetable
     {
         transform.position += transform.right * currentSpeed * Time.deltaTime;
 
-        finalAngle = startAngle + rotateAmount;
-        //deltaAngle = (finalAngle - startAngle);
-        var sign = finalAngle - startAngle;
-        if (sign > 0)
-            deltaAngle = Mathf.Abs(deltaAngle);
-        else
-            deltaAngle = Mathf.Abs(deltaAngle) * -1;
-
-        actualAngle += deltaAngle * currentSpeed * Time.deltaTime;
-        transform.rotation = Quaternion.Euler(0, 0, actualAngle);
-        if (deltaAngle > 0 && actualAngle > finalAngle || deltaAngle < 0 && actualAngle < finalAngle)
+        if (rotateAmount != 0)
         {
-            finalAngle = Clamp(finalAngle);
-            transform.rotation = Quaternion.Euler(0, 0, finalAngle);
-            startAngle = finalAngle;
-            rotateAmount = 0;
-            actualAngle = (int)Clamp(finalAngle);
+            finalAngle = startAngle + rotateAmount;
+            //deltaAngle = (finalAngle - startAngle);
+            var sign = finalAngle - startAngle;
+            if (sign > 0)
+                deltaAngle = Mathf.Abs(deltaAngle);
+            else
+                deltaAngle = Mathf.Abs(deltaAngle) * -1;
+
+            actualAngle += deltaAngle * currentSpeed * Time.deltaTime;
+            transform.rotation = Quaternion.Euler(0, 0, actualAngle);
+            if (deltaAngle > 0 && actualAngle > finalAngle || deltaAngle < 0 && actualAngle < finalAngle)
+            {
+                finalAngle = Clamp(finalAngle);
+                transform.rotation = Quaternion.Euler(0, 0, finalAngle);
+                startAngle = finalAngle;
+                rotateAmount = 0;
+                actualAngle = (int)Clamp(finalAngle);
+            }
         }
 
         var up = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
