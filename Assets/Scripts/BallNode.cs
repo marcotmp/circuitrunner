@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BallNode : MonoBehaviour, CameraTargetable
+public enum BallStartAngle { RIGHT = 0, LEFT = 180, UP = 90, DOWN = 270 };
+
+public class BallNode : MonoBehaviour
 {
     public enum BallState
     {
@@ -15,8 +15,6 @@ public class BallNode : MonoBehaviour, CameraTargetable
     };
 
     public float speed = 1;
-    public Direction direction;
-    public float movementAngle = 0;
     public Ball ball;
     public GameObject boltPrefab;
 
@@ -33,16 +31,13 @@ public class BallNode : MonoBehaviour, CameraTargetable
     public float actualAngle;
     public float finalAngle;
 
+    float jumpTime = .05f;
+    float flipTime = .05f;
+    
     // Use this for initialization
     void Start()
     {
-        currentSpeed = speed;
-        transform.rotation = Quaternion.Euler(
-            new Vector3(transform.rotation.x, transform.rotation.y, (float)direction)
-        );
-        state = BallState.Running;
     }
-
 
     // Update is called once per frame
     void Update()
@@ -90,13 +85,13 @@ public class BallNode : MonoBehaviour, CameraTargetable
                 print("jump up");
                 ball.Jump();
 
-                Invoke("JumpUp", .1f);
+                Invoke("JumpUp", jumpTime);
             }
             else
             {
                 print("run upside");
                 ball.Flip();
-                Invoke("GoUp", .1f);
+                Invoke("GoUp", flipTime);
             }
         }
         else if (down)
@@ -106,20 +101,26 @@ public class BallNode : MonoBehaviour, CameraTargetable
                 print("jump down");
                 ball.Jump();
 
-                Invoke("JumpDown", .1f);
+                Invoke("JumpDown", jumpTime);
             }
             else
             {
                 print("run downside");
                 ball.Flip();
-                Invoke("GoDown", .1f);
+                Invoke("GoDown", flipTime);
             }
         }
 
         if (mouseLeft)
             Fire();
     }
-    
+
+    public void StartRun()
+    {
+        currentSpeed = speed;
+        state = BallState.Running;
+    }
+
     public void RotateAmount(float angle)
     {
         rotateAmount = angle;
@@ -136,14 +137,14 @@ public class BallNode : MonoBehaviour, CameraTargetable
         return transform.rotation.eulerAngles.z == 0 || transform.rotation.eulerAngles.z == 128;
     }
 
-    public Direction GetDirection()
-    {
-        return direction;
-    }
-
     public float GetAngle()
     {
         return actualAngle;
+    }
+
+    public void SetStartAngle(BallStartAngle startAngle)
+    {
+        this.startAngle = (float)startAngle;
     }
 
     public Vector3 GetPosition()

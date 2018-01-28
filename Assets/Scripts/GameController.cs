@@ -11,10 +11,13 @@ public class GameController : MonoBehaviour {
     public GameObject gameOverMenu;
     public GameObject winMenu;
 
-    // Use this for initialization
-    void Start () {
+    public StartPoint startPoint;
+
+	void Start () {
         ballNode.OnDie = GameOver;
         ballNode.OnWin = Win;
+
+        Invoke("StartGame", .5f);
     }
 
     public void RestartLevel()
@@ -24,7 +27,13 @@ public class GameController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        startPoint.ballNode = ballNode.gameObject;
 	}
+
+    void StartGame()
+    {
+        startPoint.StartGame();
+    }
 
     public void GameOver()
     {
