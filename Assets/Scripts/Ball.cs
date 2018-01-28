@@ -40,7 +40,7 @@ public class Ball : MonoBehaviour {
                 otherRoadZone = tmpRoadZone;
             }
             //print(currentRoadZone + " " + otherRoadZone);
-            print("current: " + currentRoadZone.gameObject.name + ", other: " + (otherRoadZone != null ? otherRoadZone.gameObject.name : ""));
+            //print("current: " + currentRoadZone.gameObject.name + ", other: " + (otherRoadZone != null ? otherRoadZone.gameObject.name : ""));
         }
     }
 
@@ -62,7 +62,7 @@ public class Ball : MonoBehaviour {
         if (roadzone)
         {
             var name = roadzone.road.gameObject.name;
-            print("exit " + name);
+            //print("exit " + name);
 
             if (otherRoadZone != null && name == otherRoadZone.road.gameObject.name)
                 otherRoadZone = null;

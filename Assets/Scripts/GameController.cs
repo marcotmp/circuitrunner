@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour {
     public BallNode ballNode;
     public CameraFollows cameraFollows;
     public GameObject gameOverMenu;
+    public GameObject winMenu;
 
     public StartPoint startPoint;
 
@@ -48,5 +49,6 @@ public class GameController : MonoBehaviour {
     public void Win()
     {
         print("win");
+        winMenu.SetActive(true);
     }
 }
