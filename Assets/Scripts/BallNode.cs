@@ -71,10 +71,39 @@ public class BallNode : MonoBehaviour
 
         if (state != BallState.Running) return;
 
-        var up = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
-        var down = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
-        var left = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A);
-        var right = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D);
+        KeyCode upArrowCode, downArrowCode, upKeyCode, downKeyCode;
+                
+        if (actualAngle > 45 && actualAngle < 135)
+        {
+            upKeyCode = KeyCode.A;
+            downKeyCode = KeyCode.D;
+            upArrowCode = KeyCode.RightArrow;
+            downArrowCode = KeyCode.LeftArrow;
+        }
+        else if (actualAngle > 135 && actualAngle < 225)
+        {
+            upKeyCode = KeyCode.S;
+            downKeyCode = KeyCode.W;
+            upArrowCode = KeyCode.DownArrow;
+            downArrowCode = KeyCode.UpArrow;
+        }
+        else if (actualAngle > 225 && actualAngle < 315)
+        {
+            upKeyCode = KeyCode.D;
+            downKeyCode = KeyCode.A;
+            upArrowCode = KeyCode.LeftArrow;
+            downArrowCode = KeyCode.RightArrow;
+        }
+        else
+        {
+            upKeyCode = KeyCode.W;
+            downKeyCode = KeyCode.S;
+            upArrowCode = KeyCode.UpArrow;
+            downArrowCode = KeyCode.DownArrow;
+        }
+
+        var up = Input.GetKeyDown(upArrowCode) || Input.GetKeyDown(upKeyCode);
+        var down = Input.GetKeyDown(downArrowCode) || Input.GetKeyDown(downKeyCode);
 
         var mouseLeft = Input.GetMouseButtonDown(0);
 
