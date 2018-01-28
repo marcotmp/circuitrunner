@@ -109,11 +109,6 @@ public class Ball : MonoBehaviour {
         gameObject.GetComponent<Animator>().Play("Ball-Flip");
     }
 
-    public Direction GetDirection()
-    {
-        return ballNode.GetDirection();
-    }
-
     void Hide()
     {
         gameObject.SetActive(false);

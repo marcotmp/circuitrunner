@@ -137,11 +137,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6be0d04c01427f43935c23c2beb5818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  direction: 0
-  movementAngle: 0
+  speed: 4
   ball: {fileID: 114883944568275010}
   boltPrefab: {fileID: 1852783116220878, guid: 8c1ea311b8617034fbdfc221ed536a83, type: 2}
+  deltaAngle: 80
+  startAngle: 0
+  actualAngle: 0
+  finalAngle: 0
 --- !u!114 &114883944568275010
 MonoBehaviour:
   m_ObjectHideFlags: 1

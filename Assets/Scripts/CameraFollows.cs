@@ -4,18 +4,12 @@ public class CameraFollows : MonoBehaviour {
 
     public GameObject target;
     public float z;
-    public float lroffset = 5f;
-    public float udoffset = 3f;
-    public float smoothVelocity;
+
     public System.Action OnShakeComplete;
-    private CameraTargetable targetable;
     private Vector3 currentPosition;
     private bool shakeMode = false;
 
-    private void Start()
-    {
-        targetable = target.GetComponent<CameraTargetable>();
-    }
+    private void Start() { }
 
     // Update is called once per frame
     void Update () {
@@ -30,29 +24,8 @@ public class CameraFollows : MonoBehaviour {
             return;
         }
 
-        Vector3 targetPos = targetable.GetPosition();
-        Vector3 newPos;
-
-        switch (targetable.GetDirection())
-        {
-            case Direction.UP:
-                newPos = new Vector3(targetPos.x, targetPos.y + udoffset, z);
-                break;
-            case Direction.RIGHT:
-                newPos = new Vector3(targetPos.x + lroffset, targetPos.y, z);
-                break;
-            case Direction.DOWN:
-                newPos = new Vector3(targetPos.x, targetPos.y - udoffset, z);
-                break;
-            case Direction.LEFT:
-                newPos = new Vector3(targetPos.x - lroffset, targetPos.y, z);
-                break;
-            default:
-                newPos = new Vector3(targetPos.x, targetPos.y, z);
-                break;
-        }
-
-        transform.position = newPos;
+        Vector3 newpos = new Vector3(target.transform.position.x, target.transform.position.y, z);
+        transform.position = newpos;
     }
 
     public void Shake()

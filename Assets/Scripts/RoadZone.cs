@@ -29,9 +29,9 @@ public class RoadZone : MonoBehaviour {
     {
         if (collision.gameObject.GetComponent<Ball>())
         {
-            var color = Color.red;
-            color.a = 0.5f;
-            spriteRenderer.color = color;
+            //var color = Color.red;
+            //color.a = 0.5f;
+            //spriteRenderer.color = color;
         }
     }
 
