@@ -239,9 +239,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 993000071}
   z: -10
-  lroffset: 0
-  udoffset: 0
-  smoothVelocity: 0
 --- !u!1001 &19734539
 Prefab:
   m_ObjectHideFlags: 0
@@ -682,6 +679,7 @@ MonoBehaviour:
   cameraFollows: {fileID: 14252921}
   gameOverMenu: {fileID: 934630717}
   winMenu: {fileID: 306559024}
+  startPoint: {fileID: 0}
 --- !u!1001 &306559022
 Prefab:
   m_ObjectHideFlags: 0
@@ -779,55 +777,17 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 224703325932600372, guid: 982bbd6846306b64c9e00a0174841560,
-        type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 479.59784
-      objectReference: {fileID: 0}
-    - target: {fileID: 114079214954353974, guid: 982bbd6846306b64c9e00a0174841560,
-        type: 2}
-      propertyPath: gameController
-      value: 
-      objectReference: {fileID: 288254044}
-    - target: {fileID: 1270083251829656, guid: 982bbd6846306b64c9e00a0174841560, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534598878792708, guid: 982bbd6846306b64c9e00a0174841560, type: 2}
-      propertyPath: m_Name
-      value: NextLevelBtn
-      objectReference: {fileID: 0}
-    - target: {fileID: 1558190760968402, guid: 982bbd6846306b64c9e00a0174841560, type: 2}
-      propertyPath: m_Name
-      value: PlayAgainBtn
-      objectReference: {fileID: 0}
     - target: {fileID: 114336008694289234, guid: 982bbd6846306b64c9e00a0174841560,
         type: 2}
       propertyPath: gameController
       value: 
       objectReference: {fileID: 288254044}
-    - target: {fileID: 114577940028551898, guid: 982bbd6846306b64c9e00a0174841560,
+    - target: {fileID: 224703325932600372, guid: 982bbd6846306b64c9e00a0174841560,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 306559025}
-    - target: {fileID: 114577940028551898, guid: 982bbd6846306b64c9e00a0174841560,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnNextLevel
+      propertyPath: m_LocalPosition.y
+      value: 479.59784
       objectReference: {fileID: 0}
-    - target: {fileID: 114519785659286112, guid: 982bbd6846306b64c9e00a0174841560,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 306559025}
-    - target: {fileID: 114519785659286112, guid: 982bbd6846306b64c9e00a0174841560,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnPlayAgain
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114079214954353974, guid: 982bbd6846306b64c9e00a0174841560, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 982bbd6846306b64c9e00a0174841560, type: 2}
   m_IsPrefabParent: 0
 --- !u!224 &306559023 stripped
@@ -840,12 +800,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1270083251829656, guid: 982bbd6846306b64c9e00a0174841560,
     type: 2}
   m_PrefabInternal: {fileID: 306559022}
---- !u!114 &306559025 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114336008694289234, guid: 982bbd6846306b64c9e00a0174841560,
-    type: 2}
-  m_PrefabInternal: {fileID: 306559022}
-  m_Script: {fileID: 11500000, guid: 7828d7ccc3cfc8d4db3785c982761ed0, type: 3}
 --- !u!1 &307971718
 GameObject:
   m_ObjectHideFlags: 0
@@ -1646,7 +1600,7 @@ Prefab:
     - target: {fileID: 224194539435139856, guid: 540e5f5f458176f4380884517f6d171b,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 84.47059
+      value: 499.79785
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 540e5f5f458176f4380884517f6d171b, type: 2}
