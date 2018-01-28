@@ -9,9 +9,10 @@ public class GameController : MonoBehaviour {
     public BallNode ballNode;
     public CameraFollows cameraFollows;
     public GameObject gameOverMenu;
+    public GameObject winMenu;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         ballNode.OnDie = GameOver;
         ballNode.OnWin = Win;
     }
@@ -39,5 +40,6 @@ public class GameController : MonoBehaviour {
     public void Win()
     {
         print("win");
+        winMenu.SetActive(true);
     }
 }
