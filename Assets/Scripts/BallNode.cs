@@ -22,6 +22,7 @@ public class BallNode : MonoBehaviour
     public Action OnWin { get; internal set; }
 
     private BallState state;
+    KeyCode upArrowCode, downArrowCode, upKeyCode, downKeyCode;
 
     private float currentSpeed;
 
@@ -33,10 +34,12 @@ public class BallNode : MonoBehaviour
 
     float jumpTime = .05f;
     float flipTime = .05f;
+
+    MusicManager musicManager;
     
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
+        musicManager = FindObjectOfType<MusicManager>();
     }
 
     // Update is called once per frame
@@ -45,36 +48,14 @@ public class BallNode : MonoBehaviour
         transform.position += transform.right * currentSpeed * Time.deltaTime;
 
         if (rotateAmount != 0)
-        {
-            finalAngle = startAngle + rotateAmount;
-            //deltaAngle = (finalAngle - startAngle);
-            var sign = finalAngle - startAngle;
-            if (sign > 0)
-                deltaAngle = Mathf.Abs(deltaAngle);
-            else
-                deltaAngle = Mathf.Abs(deltaAngle) * -1;
-
-            actualAngle += deltaAngle * currentSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.Euler(0, 0, actualAngle);
-            if (deltaAngle > 0 && actualAngle > finalAngle || deltaAngle < 0 && actualAngle < finalAngle)
-            {
-                finalAngle = Clamp(finalAngle);
-                transform.rotation = Quaternion.Euler(0, 0, finalAngle);
-                startAngle = finalAngle;
-                rotateAmount = 0;
-                actualAngle = (int)Clamp(finalAngle);
-                state = BallState.Running;
-
-                AlignToRoad();
-            }
-        }
+            RotateBall();
 
         if (state != BallState.Running) return;
 
-        var up = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
-        var down = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
-        var left = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A);
-        var right = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D);
+        UpdateKeyCodes();
+
+        var up = Input.GetKeyDown(upArrowCode) || Input.GetKeyDown(upKeyCode);
+        var down = Input.GetKeyDown(downArrowCode) || Input.GetKeyDown(downKeyCode);
 
         var mouseLeft = Input.GetMouseButtonDown(0);
 
@@ -82,6 +63,7 @@ public class BallNode : MonoBehaviour
 
         if (up)
         {
+            currentSpeed = 0;
             if (IsUp() && ball.CanJump())
             {
                 //print("jump up");
@@ -98,6 +80,7 @@ public class BallNode : MonoBehaviour
         }
         else if (down)
         {
+            currentSpeed = 0;
             if (IsDown() && ball.CanJump())
             {
                 //print("jump down");
@@ -113,8 +96,68 @@ public class BallNode : MonoBehaviour
             }
         }
 
+        if (up || down)
+            musicManager.PlayFlipEffect();
+
         if (mouseLeft)
             Fire();
+    }
+
+    void RotateBall()
+    {
+        finalAngle = startAngle + rotateAmount;
+        //deltaAngle = (finalAngle - startAngle);
+        var sign = finalAngle - startAngle;
+        if (sign > 0)
+            deltaAngle = Mathf.Abs(deltaAngle);
+        else
+            deltaAngle = Mathf.Abs(deltaAngle) * -1;
+
+        actualAngle += deltaAngle * currentSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.Euler(0, 0, actualAngle);
+        if (deltaAngle > 0 && actualAngle > finalAngle || deltaAngle < 0 && actualAngle < finalAngle)
+        {
+            finalAngle = Clamp(finalAngle);
+            transform.rotation = Quaternion.Euler(0, 0, finalAngle);
+            startAngle = finalAngle;
+            rotateAmount = 0;
+            actualAngle = (int)Clamp(finalAngle);
+            state = BallState.Running;
+
+            AlignToRoad();
+        }
+    }
+
+    void UpdateKeyCodes()
+    {
+        if (actualAngle > 45 && actualAngle < 135)
+        {
+            upKeyCode = KeyCode.A;
+            downKeyCode = KeyCode.D;
+            upArrowCode = KeyCode.RightArrow;
+            downArrowCode = KeyCode.LeftArrow;
+        }
+        else if (actualAngle > 135 && actualAngle < 225)
+        {
+            upKeyCode = KeyCode.S;
+            downKeyCode = KeyCode.W;
+            upArrowCode = KeyCode.DownArrow;
+            downArrowCode = KeyCode.UpArrow;
+        }
+        else if (actualAngle > 225 && actualAngle < 315)
+        {
+            upKeyCode = KeyCode.D;
+            downKeyCode = KeyCode.A;
+            upArrowCode = KeyCode.LeftArrow;
+            downArrowCode = KeyCode.RightArrow;
+        }
+        else
+        {
+            upKeyCode = KeyCode.W;
+            downKeyCode = KeyCode.S;
+            upArrowCode = KeyCode.UpArrow;
+            downArrowCode = KeyCode.DownArrow;
+        }
     }
 
     public void StartRun()
@@ -172,6 +215,8 @@ public class BallNode : MonoBehaviour
 
     public void Hit()
     {
+        musicManager.PlayDeadEffect();
+
         Die();
     }
 
@@ -187,6 +232,8 @@ public class BallNode : MonoBehaviour
 
     public void Fire()
     {
+        musicManager.PlayFireEffect();
+
         Bolt bolt = Instantiate(boltPrefab, transform.parent, true).GetComponent<Bolt>();
         Vector3 newPos;
         if (IsHorizontalMove())
@@ -208,6 +255,7 @@ public class BallNode : MonoBehaviour
 
         transform.localScale = new Vector3(1, -1, 1);
         ball.Swap();
+        currentSpeed = speed;
     }
 
     void JumpDown()
@@ -219,6 +267,7 @@ public class BallNode : MonoBehaviour
 
         transform.localScale = new Vector3(1, 1, 1);
         ball.Swap();
+        currentSpeed = speed;
     }
 
     public void AlignToRoad()
@@ -252,11 +301,13 @@ public class BallNode : MonoBehaviour
     void GoUp()
     {
         transform.localScale = new Vector3(1, 1, 1);
+        currentSpeed = speed;
     }
 
     void GoDown()
     {
         transform.localScale = new Vector3(1, -1, 1);
+        currentSpeed = speed;
     }
 
     private bool IsUp()
