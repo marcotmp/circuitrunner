@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleClip: {fileID: 0}
   gameplayClip: {fileID: 8300000, guid: 088823a63a66b1743a5c514e4284a4dc, type: 3}
+  introClip: {fileID: 8300000, guid: 6a783498c65276d4ca223f0293c9b3c5, type: 3}
   deadClip: {fileID: 8300000, guid: 6a783498c65276d4ca223f0293c9b3c5, type: 3}
   flipEffect: {fileID: 8300000, guid: 224d0e15e29dbfa4c99ff5dccc1d8bfa, type: 3}
   boltEffect: {fileID: 8300000, guid: c0338b4cf5af8f644bc9cec1c669ef8d, type: 3}

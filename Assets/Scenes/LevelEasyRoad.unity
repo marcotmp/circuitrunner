@@ -607,16 +607,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 224703325932600372, guid: 982bbd6846306b64c9e00a0174841560,
-        type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 78.8
-      objectReference: {fileID: 0}
     - target: {fileID: 114336008694289234, guid: 982bbd6846306b64c9e00a0174841560,
         type: 2}
       propertyPath: gameController
       value: 
       objectReference: {fileID: 335216692}
+    - target: {fileID: 224703325932600372, guid: 982bbd6846306b64c9e00a0174841560,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -3.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 982bbd6846306b64c9e00a0174841560, type: 2}
   m_IsPrefabParent: 0
@@ -785,7 +785,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -822,8 +822,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1638958733}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 262, y: 147.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 276.5, y: 155.5, z: 0}
+  m_LocalScale: {x: 0.69125, y: 0.69125, z: 0.69125}
   m_Children:
   - {fileID: 1928867313}
   - {fileID: 1178274248}

@@ -6,6 +6,7 @@ public class MusicManager : MonoBehaviour {
 
     public AudioClip titleClip;
     public AudioClip gameplayClip;
+    public AudioClip introClip;
     public AudioClip deadClip;
     public AudioClip flipEffect;
     public AudioClip boltEffect;
@@ -44,5 +45,10 @@ public class MusicManager : MonoBehaviour {
     public void PlayDeadEffect()
     {
         audioSource.PlayOneShot(deadClip);
+    }
+
+    public void PlayIntroEffect()
+    {
+        audioSource.PlayOneShot(introClip);
     }
 }

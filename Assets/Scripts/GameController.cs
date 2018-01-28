@@ -54,7 +54,6 @@ public class GameController : MonoBehaviour {
 
     public void Win()
     {
-        print("win");
-        winMenu.SetActive(true);
+        winMenu.GetComponent<WinMenu>().ShowWinMenu();
     }
 }

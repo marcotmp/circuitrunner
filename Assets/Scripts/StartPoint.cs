@@ -59,6 +59,7 @@ public class StartPoint : MonoBehaviour {
     {
         selectedEntrance.SetActive(false);
 
+        FindObjectOfType<MusicManager>().PlayIntroEffect();
         ballNode.SetActive(true);
         ballNode.GetComponent<BallNode>().SetStartAngle(ballStartAngle);
         ballNode.GetComponent<BallNode>().StartRun();

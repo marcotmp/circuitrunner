@@ -1768,6 +1768,10 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 208.193
       objectReference: {fileID: 0}
+    - target: {fileID: 1270083251829656, guid: 982bbd6846306b64c9e00a0174841560, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 982bbd6846306b64c9e00a0174841560, type: 2}
   m_IsPrefabParent: 0
@@ -2450,7 +2454,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -2487,8 +2491,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1638958733}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100, y: 56.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 276.5, y: 155.5, z: 0}
+  m_LocalScale: {x: 0.69125, y: 0.69125, z: 0.69125}
   m_Children:
   - {fileID: 1928867313}
   - {fileID: 1178274248}
@@ -3172,6 +3176,10 @@ Prefab:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 617268396}
+    - target: {fileID: 1832075226162374, guid: 540e5f5f458176f4380884517f6d171b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 540e5f5f458176f4380884517f6d171b, type: 2}
   m_IsPrefabParent: 0
