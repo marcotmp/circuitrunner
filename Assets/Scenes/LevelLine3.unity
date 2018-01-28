@@ -2172,15 +2172,21 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1270083251829656, guid: 982bbd6846306b64c9e00a0174841560, type: 2}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 224703325932600372, guid: 982bbd6846306b64c9e00a0174841560,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 822.9957
       objectReference: {fileID: 0}
     - target: {fileID: 114336008694289234, guid: 982bbd6846306b64c9e00a0174841560,
         type: 2}
       propertyPath: gameController
       value: 
       objectReference: {fileID: 57630333}
+    - target: {fileID: 224079394052501002, guid: 982bbd6846306b64c9e00a0174841560,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 896.5957
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 982bbd6846306b64c9e00a0174841560, type: 2}
   m_IsPrefabParent: 0
