@@ -64,6 +64,8 @@ public class BallNode : MonoBehaviour
                 rotateAmount = 0;
                 actualAngle = (int)Clamp(finalAngle);
                 state = BallState.Running;
+
+                AlignToRoad();
             }
         }
 
@@ -82,14 +84,14 @@ public class BallNode : MonoBehaviour
         {
             if (IsUp() && ball.CanJump())
             {
-                print("jump up");
+                //print("jump up");
                 ball.Jump();
 
                 Invoke("JumpUp", jumpTime);
             }
             else
             {
-                print("run upside");
+                //print("run upside");
                 ball.Flip();
                 Invoke("GoUp", flipTime);
             }
@@ -98,14 +100,14 @@ public class BallNode : MonoBehaviour
         {
             if (IsDown() && ball.CanJump())
             {
-                print("jump down");
+                //print("jump down");
                 ball.Jump();
 
                 Invoke("JumpDown", jumpTime);
             }
             else
             {
-                print("run downside");
+                //print("run downside");
                 ball.Flip();
                 Invoke("GoDown", flipTime);
             }
@@ -217,6 +219,34 @@ public class BallNode : MonoBehaviour
 
         transform.localScale = new Vector3(1, 1, 1);
         ball.Swap();
+    }
+
+    public void AlignToRoad()
+    {
+        // find the platform with the same angle as the ball and follow it
+        float angleOther = float.NaN;
+        if (ball.otherRoadZone != null)
+            angleOther = ball.otherRoadZone.road.transform.rotation.eulerAngles.z;
+
+        float angleCurrent = float.NaN;
+        if (ball.currentRoadZone != null)
+            angleCurrent = ball.currentRoadZone.road.transform.rotation.eulerAngles.z;
+
+        GameObject road = null;
+        if (transform.rotation.eulerAngles.z == angleOther)
+            road = ball.otherRoadZone.road;
+        else if (transform.rotation.eulerAngles.z == angleCurrent)
+            road = ball.currentRoadZone.road;
+
+        print(angleOther + " " + angleCurrent + " " + road);
+
+        if (road != null)
+        {
+            if (IsHorizontalMove())
+                transform.position = new Vector3(transform.position.x, road.transform.position.y, transform.position.z);
+            else
+                transform.position = new Vector3(road.transform.position.x, transform.position.y, transform.position.z);
+        }
     }
 
     void GoUp()

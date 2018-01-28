@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelLine1.unity
     guid: c35b9a833b45f5f448d782d4b5667e89
+  - enabled: 1
+    path: Assets/Scenes/LevelLine2.unity
+    guid: fdef74b80bd608e46986575e76c67455
