@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour {
     public RoadZone otherRoadZone;
     public RoadZone currentRoadZone;
 
+
     // Use this for initialization
     void Start () {
         
@@ -76,6 +77,11 @@ public class Ball : MonoBehaviour {
 
     }
 
+    public float GetAngle()
+    {
+        return ballNode.GetAngle();
+    }
+
     public bool CanJump()
     {
         return otherRoadZone != null;
@@ -84,6 +90,11 @@ public class Ball : MonoBehaviour {
     public RoadZone GetNextZone()
     {
         return otherRoadZone;
+    }
+
+    public void RotateTo(float angle)
+    {
+        ballNode.RotateAmount(angle);
     }
 
     public void Hit()

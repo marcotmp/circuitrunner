@@ -15,6 +15,12 @@ public class BallNode : MonoBehaviour, CameraTargetable
 
     private float currentSpeed;
 
+    public float deltaAngle = 80.0f;
+    private float rotateAmount = 0;
+    public float startAngle;
+    public float actualAngle;
+    public float finalAngle;
+
     // Use this for initialization
     void Start()
     {
@@ -24,10 +30,31 @@ public class BallNode : MonoBehaviour, CameraTargetable
         );
     }
 
+    
     // Update is called once per frame
     void Update()
     {
         transform.position += transform.right * currentSpeed * Time.deltaTime;
+
+
+        finalAngle = startAngle + rotateAmount;
+        //deltaAngle = (finalAngle - startAngle);
+        var sign = finalAngle - startAngle;
+        if (sign > 0)
+            deltaAngle = Mathf.Abs(deltaAngle);
+        else
+            deltaAngle = Mathf.Abs(deltaAngle) * -1;
+
+        actualAngle += deltaAngle * currentSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.Euler(0, 0, actualAngle);
+        if (deltaAngle > 0 && actualAngle > finalAngle || deltaAngle < 0 && actualAngle < finalAngle)
+        {
+            finalAngle = Clamp(finalAngle);
+            transform.rotation = Quaternion.Euler(0, 0, finalAngle);
+            startAngle = finalAngle;
+            rotateAmount = 0;
+            actualAngle = (int)Clamp(finalAngle);
+        }
 
         var up = Input.GetKeyDown(KeyCode.UpArrow);
         var down = Input.GetKeyDown(KeyCode.DownArrow);
@@ -83,6 +110,11 @@ public class BallNode : MonoBehaviour, CameraTargetable
             Fire();
     }
 
+    public void RotateAmount(float angle)
+    {
+        rotateAmount = angle;
+    }
+
     private bool IsHorizontalMove()
     {
         return transform.rotation.eulerAngles.z == 0 || transform.rotation.eulerAngles.z == 128;
@@ -101,6 +133,11 @@ public class BallNode : MonoBehaviour, CameraTargetable
     public Direction GetDirection()
     {
         return direction;
+    }
+
+    public float GetAngle()
+    {
+        return actualAngle;
     }
 
     public Vector3 GetPosition()
@@ -140,6 +177,17 @@ public class BallNode : MonoBehaviour, CameraTargetable
     private bool IsDown()
     {
         return transform.localScale.y < 0;
+    }
+
+    private float Clamp(float angle)
+    {
+        if (angle >= 360)
+            return angle - 360;
+
+        if (angle < 0)
+            return angle + 360;
+
+        return angle;
     }
 
 }

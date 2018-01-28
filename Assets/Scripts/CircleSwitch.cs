@@ -31,7 +31,7 @@ public class CircleSwitch : MonoBehaviour {
         CircleSwitchAngle.ZERO, CircleSwitchAngle.NINE, CircleSwitchAngle.ONEEIGHT, CircleSwitchAngle.TWOSEVEN
     };
     int currentAngleIndex = 0;
-    bool locked = false;
+    bool rotationLocked = false;
 
     // Use this for initialization
     void Start()
@@ -46,7 +46,7 @@ public class CircleSwitch : MonoBehaviour {
         Bolt projectile = collision.GetComponent<Bolt>();
         if (projectile != null)
         {
-            if (!locked)
+            if (!rotationLocked)
             {
                 // signal projectile to destroy itself
                 projectile.Hit();
@@ -61,8 +61,8 @@ public class CircleSwitch : MonoBehaviour {
         Ball ball = collision.gameObject.GetComponent<Ball>();
         if (ball != null)
         {
-            locked = true;
-            float ballAngle = (float)ball.GetDirection();
+            rotationLocked = true;
+            float ballAngle = ball.GetAngle();
             CircleSwitchAngle entryAngle = entryAngles[ballAngle];
             var finalAngle = GetFinalAngle(entryAngle, currentAngle);
 
@@ -71,6 +71,34 @@ public class CircleSwitch : MonoBehaviour {
             {
                 ball.Hit();
             }
+
+            var rotationValue = GetRotationAngle(finalAngle);
+            ball.RotateTo(rotationValue);
+        }
+    }
+
+    // should get the value from a table instead of this method
+    private float GetRotationAngle(float angle)
+    {
+        if (angle == 0)
+            return -90;
+        if (angle == 90)
+            return 0;
+        if (angle == 180)
+            return 0;
+        if (angle == 270)
+            return 0;
+
+
+        return 0;
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        Ball ball = collision.gameObject.GetComponent<Ball>();
+        if (ball != null)
+        {
+            rotationLocked = false;
         }
     }
 
