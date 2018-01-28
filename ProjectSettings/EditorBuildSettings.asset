@@ -4,4 +4,34 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: dc07965cb4161ff4291937075a9da792
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 4f5e8f17e0ceb7b41b76ca45a5a5d94f
+  - enabled: 1
+    path: Assets/Scenes/LevelTutorial1.unity
+    guid: c40a35d38599b5747b93eb744325ebca
+  - enabled: 1
+    path: Assets/Scenes/LevelEasyRoad.unity
+    guid: d6aae744dac8e3044be2831e57b0ac04
+  - enabled: 1
+    path: Assets/Scenes/LevelLine1.unity
+    guid: c35b9a833b45f5f448d782d4b5667e89
+  - enabled: 1
+    path: Assets/Scenes/LevelLine2.unity
+    guid: fdef74b80bd608e46986575e76c67455
+  - enabled: 1
+    path: Assets/Scenes/LevelLine3.unity
+    guid: dcd5f26bed3544f4eba2c11e2f3e8779
+  - enabled: 1
+    path: Assets/Scenes/LevelJumping.unity
+    guid: 4ab873659141fbc40969d5ca26fdddbd
+  - enabled: 1
+    path: Assets/Scenes/LevelSwitchRoad.unity
+    guid: e33de17b7821d934e834140c410acc32
+  - enabled: 1
+    path: Assets/Scenes/LevelSpiral.unity
+    guid: 2ffb64aa4c341ea488f9f5866bad3cae

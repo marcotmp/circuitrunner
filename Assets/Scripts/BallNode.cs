@@ -34,9 +34,13 @@ public class BallNode : MonoBehaviour
 
     float jumpTime = .05f;
     float flipTime = .05f;
+
+    MusicManager musicManager;
     
     // Use this for initialization
-    void Start() { }
+    void Start() {
+        musicManager = FindObjectOfType<MusicManager>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -91,6 +95,9 @@ public class BallNode : MonoBehaviour
                 Invoke("GoDown", flipTime);
             }
         }
+
+        if (up || down)
+            musicManager.PlayFlipEffect();
 
         if (mouseLeft)
             Fire();
@@ -208,6 +215,8 @@ public class BallNode : MonoBehaviour
 
     public void Hit()
     {
+        musicManager.PlayDeadEffect();
+
         Die();
     }
 
@@ -223,6 +232,8 @@ public class BallNode : MonoBehaviour
 
     public void Fire()
     {
+        musicManager.PlayFireEffect();
+
         Bolt bolt = Instantiate(boltPrefab, transform.parent, true).GetComponent<Bolt>();
         Vector3 newPos;
         if (IsHorizontalMove())

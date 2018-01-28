@@ -14,7 +14,6 @@ public class CameraFollows : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
         if (shakeMode)
         {
             var x = Random.Range(-1, 1);
